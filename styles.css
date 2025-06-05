@@ -1,0 +1,93 @@
+/* Couleur de fond du site */
+body {
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+}
+
+/* En-tête avec bordure basse, marge intérieure et style du titre */
+header {
+    position: relative; /* Définit l'en-tête comme conteneur de référence pour l'image */
+    border-bottom: 0.5px solid #007bff;
+    padding: 20px;
+}
+
+/* Positionnement de l'image dans le coin supérieur droit de l'en-tête */
+header img {
+    position: absolute; /* Positionnement absolu de l'image */
+    top: 0px; /* Distance du haut à 10 pixels */
+    right: 0px; /* Distance du bord droit à 20 pixels */
+    width: 125px; /* Ajustez la taille de l'image selon vos préférences */
+    height: auto; /* Permet à la hauteur de s'ajuster proportionnellement à la largeur */
+}
+
+header h1 {
+    color: #2a7ae2;
+    text-align: center;
+}
+
+/* Menu de navigation - Déclaration en flexbox */
+nav.menu {
+    display: flex; /* Active le mode flexbox */
+    justify-content: space-between; /* Espace entre les éléments */
+    background-color: #e0f7fa; /* Fond de couleur pour le menu */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 10px 20px; /* Marge intérieure plus grande à gauche et à droite */
+}
+
+/* Éléments du menu */
+nav.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Rend la liste en flexbox */
+    width: 100%; /* Prend toute la largeur disponible */
+}
+
+nav.menu ul li {
+    flex: 1; /* Chaque item occupe un tiers de l'espace disponible */
+    text-align: center; /* Centre le texte dans chaque item */
+}
+
+nav.menu ul li a {
+    text-decoration: none;
+    display: block; /* Permet au lien de remplir l'élément */
+    padding: 15px 0; /* Marge intérieure plus grande en haut et en bas */
+    color: #333; /* Couleur du texte */
+    transition: background-color 0.3s; /* Ajoute une transition pour l'effet hover */
+}
+
+nav.menu ul li a:hover {
+    background-color: #b2ebf2; /* Couleur de fond au survol */
+}
+
+/* Style de l'image dans la section principale */
+section img {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+}
+
+/* Liste des produits avec carrés comme puces */
+section ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+/* Titre des listes de produits en italique, couleur personnalisée, et marge intérieure gauche */
+section ul h3 {
+    font-style: italic;
+    color: #ff5733; /* Couleur de votre choix */
+    padding-left: 5px; /* Marge intérieure gauche de 5 pixels */
+}
+
+/* Style du pied de page */
+footer {
+    border-top: 1px solid #007bff;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+}
