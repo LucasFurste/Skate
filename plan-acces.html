@@ -5,65 +5,268 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan d'accès à l'ESNL | Planches de Surf et Accessoires - FURSTENBERGER Lucas</title>
     <meta name="description" content="Retrouvez l'emplacement de l'ESNL pour acheter vos planches de surf, accessoires et combinaisons. Accès facile et conseils personnalisés à l'ESNL.">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        nav.menu {
-            display: flex;
-            justify-content: space-around;
-        }
-        nav.menu ul {
-            display: flex;
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-        }
-        nav.menu li {
-            flex: 1;
-            margin: 10px;
-        }
-        nav.menu a {
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-        }
-        nav.menu a:hover {
-            background-color: #388e3c;
-            transition: background 0.3s;
-        }
-        .header-image {
-            float: right;
-            margin-left: 20px;
-            max-width: 100%;
-            height: auto;
-        }
-        footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            position: relative;
-            width: 100%;
-            background-color: #f9f9f9;
+        :root {
+            --main-bg: #F8F6F0;
+            --primary: #223A5E;
+            --accent: #21B573;
+            --text: #223A5E;
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
+            background: var(--main-bg);
+            color: var(--text);
+            font-family: 'Open Sans', Arial, sans-serif;
         }
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+        /* Loader */
+        #loader-bg {
+            position: fixed;
+            z-index: 9999;
+            background: var(--main-bg);
+            width: 100vw;
+            height: 100vh;
+            top: 0; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s;
+        }
+        #loader {
+            border: 8px solid #eee;
+            border-top: 8px solid var(--accent);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg);}
+        }
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 0;
+        }
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px 24px 20px;
+            gap: 32px;
+        }
+        .header-flex > div {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        .header-img {
+            width: 210px;
+            max-width: 32vw;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(34,58,94,0.10);
+            object-fit: cover;
+            background: #fff;
+            display: block;
+            margin: 0;
+            transition: transform 0.4s cubic-bezier(.25,.8,.25,1), filter 0.4s;
+        }
+        .header-img:hover {
+            transform: scale(1.07) rotate(-2deg);
+        }
+        @media (max-width: 900px) {
+            .header-flex {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 18px;
+            }
+            .header-img {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+        }
+        header h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.1rem;
+            margin: 0 0 14px 0;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        nav.menu {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 0;
+        }
+        nav.menu ul {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            gap: 10px;
+        }
+        nav.menu li {
+            margin: 0;
+        }
+        nav.menu a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background-color: transparent;
+            color: var(--accent);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Montserrat', Arial, sans-serif;
+            position: relative;
+            transition: color 0.3s;
+        }
+        nav.menu a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 6px;
+        }
+        nav.menu a:hover {
+            color: #fff;
+            background: var(--accent);
+        }
+        nav.menu a:hover::after {
+            width: 100%;
+        }
         main {
             flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 10px 0 10px;
         }
         section {
             margin-bottom: 30px;
+        }
+        h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            font-size: 1.08rem;
+        }
+        .map-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideInMap 1s 0.3s forwards;
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        @keyframes slideInMap {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .map-img {
+            margin-top: 18px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(34,58,94,0.10);
+            transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s cubic-bezier(.25,.8,.25,1), filter 0.4s;
+            width: 100%;
+            max-width: 600px;
+            will-change: transform;
+        }
+        .map-img:hover {
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: 0 12px 32px rgba(34,58,94,0.18);
+        }
+        .map-img.invert {
+            filter: invert(1);
+        }
+        #show-more-btn {
+            display: block;
+            margin: 30px auto 0 auto;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(34,58,94,0.08);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        #show-more-btn:hover {
+            transform: scale(1.09) rotate(-2deg);
+            box-shadow: 0 8px 24px rgba(34,58,94,0.18);
+            background: #188e5a;
+        }
+        #plus-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s, transform 0.6s;
+            margin-top: 24px;
+        }
+        #plus-section.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .plus-bloc {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(34,58,94,0.10);
+            border: 1.2px solid var(--primary);
+            padding: 22px 18px;
+            margin: 0 auto 18px auto;
+            max-width: 420px;
+            text-align: center;
+            font-size: 1.07rem;
+            animation: slideInPlus 1s;
+        }
+        @keyframes slideInPlus {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            background-color: var(--primary);
+            color: #fff;
+            font-size: 1rem;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            margin-right: 8px;
+        }
+        @media (max-width: 700px) {
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
         }
         img {
             max-width: 100%;
@@ -76,26 +279,33 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #222;
+            background: var(--primary);
             color: #fff;
             padding: 20px;
             z-index: 1000;
             text-align: center;
+            font-size: 1rem;
+            box-shadow: 0 -2px 10px rgba(34,58,94,0.10);
         }
         #cookie-banner button {
-            margin: 10px;
-            padding: 8px 16px;
+            margin: 10px 6px;
+            padding: 8px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-        #accept-cookies {
-            background: #4CAF50;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            background: var(--accent);
             color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        #cookie-banner button:hover {
+            transform: scale(1.09) rotate(-2deg);
+            background: #188e5a;
         }
         #refuse-cookies {
             background: #888;
-            color: #fff;
         }
         #cookie-banner a {
             color: #aaf;
@@ -104,18 +314,24 @@
     </style>
 </head>
 <body>
-
-    <!-- En-tête avec menu de navigation -->
+    <!-- Loader -->
+    <div id="loader-bg">
+        <div id="loader"></div>
+    </div>
     <header>
-        <h1>Plan d'accès à l'ESNL</h1>
-        <img src="sk8.jpg" alt="Entrée de l'ESNL, spécialiste planches de surf et accessoires" width="150" height="100" class="header-image">
-        <nav class="menu">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="plan-acces.html">Plan d'accès</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="header-flex">
+            <div>
+                <h1>Plan d'accès à l'ESNL</h1>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="plan-acces.html">Plan d'accès</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <img src="sk8.jpg" alt="Entrée de l'ESNL, spécialiste planches de surf et accessoires" class="header-img">
+        </div>
     </header>
 
     <!-- Contenu principal -->
@@ -125,7 +341,29 @@
             <p>
                 Nous sommes situés à l'ESNL, à quelques minutes du centre-ville de Mont-de-Marsan. Venez découvrir notre sélection de planches de surf, accessoires et combinaisons, et profitez de conseils personnalisés sur place&nbsp;!
             </p>
-            <img src="campus.jpg" alt="Plan d'accès à l'ESNL, magasin de surf à Mont-de-Marsan" width="600" height="400">
+            <div class="map-container">
+                <img src="campus.jpg" alt="Plan d'accès à l'ESNL, magasin de surf à Mont-de-Marsan" class="map-img" id="map-img">
+            </div>
+            <button id="show-more-btn">Afficher plus</button>
+            <div id="plus-section">
+                <div class="plus-bloc">
+                    <strong>Services supplémentaires&nbsp;:</strong>
+                    <ul style="margin-top:10px; text-align:left;">
+                        <li>Parking gratuit à proximité</li>
+                        <li>Atelier de réparation de planches</li>
+                        <li>Location de matériel</li>
+                        <li>Conseils personnalisés sur place</li>
+                    </ul>
+                </div>
+                <div class="plus-bloc">
+                    <strong>Accessoires disponibles&nbsp;:</strong>
+                    <ul style="margin-top:10px; text-align:left;">
+                        <li>Housses de transport</li>
+                        <li>Gilets de flottaison</li>
+                        <li>Crème solaire waterproof</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -147,6 +385,17 @@
         <button id="refuse-cookies">Refuser</button>
     </div>
     <script>
+        // Loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader-bg').style.opacity = 0;
+                setTimeout(function() {
+                    document.getElementById('loader-bg').style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // Bannière cookies
         function setCookieConsent(value) {
             localStorage.setItem('cookieConsent', value);
         }
@@ -154,6 +403,11 @@
             return localStorage.getItem('cookieConsent');
         }
         document.addEventListener('DOMContentLoaded', function() {
+            // Animation slide-in de la carte
+            var map = document.querySelector('.map-container');
+            if(map) map.style.opacity = 1;
+
+            // Bannière cookies
             if (!getCookieConsent()) {
                 document.getElementById('cookie-banner').style.display = 'block';
             }
@@ -165,6 +419,27 @@
                 setCookieConsent('refused');
                 document.getElementById('cookie-banner').style.display = 'none';
             };
+
+            // Afficher plus
+            document.getElementById('show-more-btn').addEventListener('click', function() {
+                var plusSection = document.getElementById('plus-section');
+                plusSection.classList.add('visible');
+                this.style.display = 'none';
+            });
+
+            // Inversion des couleurs de la carte au clic
+            var mapImg = document.getElementById('map-img');
+            mapImg.addEventListener('click', function() {
+                this.classList.toggle('invert');
+            });
+
+            // Parallax sur la carte au scroll
+            window.addEventListener('scroll', function() {
+                var scrolled = window.scrollY;
+                if(mapImg){
+                    mapImg.style.transform = 'translateY(' + (scrolled * 0.10) + 'px) scale(1.08)';
+                }
+            });
         });
     </script>
 </body>

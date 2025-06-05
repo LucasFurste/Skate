@@ -5,79 +5,302 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vente de Planches de Surf et Accessoires à l'ESNL | FURSTENBERGER Lucas</title>
     <meta name="description" content="Spécialiste de la vente de planches de surf, accessoires et combinaisons à l'ESNL. Produits de qualité pour surfeurs débutants et expérimentés. Découvrez notre sélection de shortboards, longboards, paddleboards, bodyboards et équipements de surf.">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        .bloc {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px;
-            background-color: #f9f9f9;
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
-        }
-        .bloc h3 {
-            margin-top: 0;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        nav.menu {
-            display: flex;
-            justify-content: space-around;
-        }
-        nav.menu ul {
-            display: flex;
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-        }
-        nav.menu li {
-            flex: 1;
-            margin: 10px;
-        }
-        nav.menu a {
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-        }
-        nav.menu a:hover {
-            background-color: #388e3c;
-            transition: background 0.3s;
-        }
-        .centered-text {
-            text-align: center;
-            margin: 20px 0;
-        }
-        footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            position: relative;
-            width: 100%;
-            background-color: #f9f9f9;
+        :root {
+            --main-bg: #F8F6F0;
+            --primary: #223A5E;
+            --accent: #21B573;
+            --text: #223A5E;
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
+            background: var(--main-bg);
+            color: var(--text);
+            font-family: 'Open Sans', Arial, sans-serif;
         }
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+        /* Loader */
+        #loader-bg {
+            position: fixed;
+            z-index: 9999;
+            background: var(--main-bg);
+            width: 100vw;
+            height: 100vh;
+            top: 0; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s;
+        }
+        #loader {
+            border: 8px solid #eee;
+            border-top: 8px solid var(--accent);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg);}
+        }
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 0;
+        }
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px 24px 20px;
+            gap: 32px;
+        }
+        .header-flex > div {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        .header-img {
+            width: 210px;
+            max-width: 32vw;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(34,58,94,0.10);
+            object-fit: cover;
+            background: #fff;
+            display: block;
+            margin: 0;
+            transition: transform 0.4s cubic-bezier(.25,.8,.25,1), filter 0.4s;
+        }
+        .header-img:hover {
+            transform: scale(1.07) rotate(-2deg);
+        }
+        .header-img.invert {
+            filter: invert(1);
+        }
+        @media (max-width: 900px) {
+            .header-flex {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 18px;
+            }
+            .header-img {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+        }
+        header h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.1rem;
+            margin: 0 0 14px 0;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        nav.menu {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 0;
+        }
+        nav.menu ul {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            gap: 10px;
+        }
+        nav.menu li {
+            margin: 0;
+        }
+        nav.menu a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background-color: transparent;
+            color: var(--accent);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Montserrat', Arial, sans-serif;
+            position: relative;
+            transition: color 0.3s;
+        }
+        nav.menu a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            bottom: 6px;
+        }
+        nav.menu a:hover {
+            color: #fff;
+            background: var(--accent);
+        }
+        nav.menu a:hover::after {
+            width: 100%;
+        }
         main {
             flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 10px 0 10px;
+        }
+        .centered-text {
+            text-align: center;
+            margin: 24px 0;
+            font-size: 1.1rem;
+        }
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .parallax-img {
+            transition: transform 0.3s cubic-bezier(.25,.8,.25,1), filter 0.4s;
+            will-change: transform;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(34,58,94,0.10);
+        }
+        .parallax-img:hover {
+            transform: scale(1.07) rotate(-2deg);
+        }
+        .parallax-img.invert {
+            filter: invert(1);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .bloc {
+            border: 1.5px solid var(--primary);
+            border-radius: 16px;
+            padding: 24px 20px;
+            background-color: var(--main-bg);
+            min-width: 260px;
+            max-width: 340px;
+            box-shadow: 0 4px 20px rgba(34,58,94,0.07);
+            flex: 1 1 320px;
+            transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
+            opacity: 0;
+        }
+        .bloc.slide-in-left {
+            animation: slideInLeft 1s forwards;
+        }
+        .bloc.slide-in-right {
+            animation: slideInRight 1s forwards;
+        }
+        .bloc h3 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        .bloc ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+        .bloc li {
+            margin-bottom: 8px;
+        }
+        .bloc:hover {
+            transform: scale(1.06) translateY(-8px);
+            box-shadow: 0 12px 32px rgba(34,58,94,0.18);
+            z-index: 2;
+        }
+        /* Section afficher plus */
+        #plus-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.5s, transform 0.5s;
+            margin-top: 24px;
+        }
+        #plus-section.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #show-more-btn {
+            display: block;
+            margin: 30px auto 0 auto;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(34,58,94,0.08);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        #show-more-btn:hover {
+            transform: scale(1.09) rotate(-2deg);
+            box-shadow: 0 8px 24px rgba(34,58,94,0.18);
+            background: #188e5a;
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            background-color: var(--primary);
+            color: #fff;
+            font-size: 1rem;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            margin-right: 8px;
+        }
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
         }
         img {
             max-width: 100%;
@@ -90,21 +313,26 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #222;
+            background: var(--primary);
             color: #fff;
             padding: 20px;
             z-index: 1000;
             text-align: center;
+            font-size: 1rem;
+            box-shadow: 0 -2px 10px rgba(34,58,94,0.10);
         }
         #cookie-banner button {
-            margin: 10px;
-            padding: 8px 16px;
+            margin: 10px 6px;
+            padding: 8px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
         }
         #accept-cookies {
-            background: #4CAF50;
+            background: var(--accent);
             color: #fff;
         }
         #refuse-cookies {
@@ -118,16 +346,24 @@
     </style>
 </head>
 <body>
+    <!-- Loader -->
+    <div id="loader-bg">
+        <div id="loader"></div>
+    </div>
     <header>
-        <h1>Vente de Planches de Surf et Accessoires à l'ESNL - FURSTENBERGER Lucas</h1>
-        <nav class="menu">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="plan-acces.html">Plan d'accès</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <img src="sk8.jpg" alt="Combinaison de surf Olaian SWS900CW, accessoire indispensable pour surfeurs à l'ESNL" width="150" height="100">
+        <div class="header-flex">
+            <div>
+                <h1>Vente de Planches de Surf et Accessoires à l'ESNL - FURSTENBERGER Lucas</h1>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="plan-acces.html">Plan d'accès</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <img src="sk8.jpg" alt="Skateur devant la ville" class="header-img" id="header-img" />
+        </div>
     </header>
     <main>
         <section>
@@ -137,9 +373,9 @@
                 Que vous soyez débutant ou surfeur expérimenté, découvrez notre sélection de shortboards, longboards, paddleboards, bodyboards, ainsi que tous les équipements nécessaires pour profiter pleinement des vagues de la côte Atlantique.
             </p>
         </section>
-        <section class="centered-text">
+        <section class="centered-text parallax-section">
             <h2 class="centered-text">Illustration de nos produits</h2>
-            <img src="sk8.jpg" alt="Illustration de planches de surf et accessoires proposés à l'ESNL">
+            <img src="sk8.jpg" alt="Illustration de planches de surf et accessoires proposés à l'ESNL" class="parallax-img" id="parallax-img">
         </section>
         <section>
             <h2 class="centered-text">Disponibilité de vente de planches de surf et accessoires à l'ESNL</h2>
@@ -165,6 +401,27 @@
                     </ul>
                 </div>
             </section>
+            <button id="show-more-btn">Afficher plus</button>
+            <section id="plus-section">
+                <div class="container">
+                    <div class="bloc">
+                        <h3>Services supplémentaires</h3>
+                        <ul>
+                            <li>Réparation de planches</li>
+                            <li>Location de combinaisons</li>
+                            <li>Cours de surf personnalisés</li>
+                        </ul>
+                    </div>
+                    <div class="bloc">
+                        <h3>Accessoires premium</h3>
+                        <ul>
+                            <li>Housses de transport</li>
+                            <li>Gilets de flottaison</li>
+                            <li>Crème solaire waterproof</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
     <footer>
@@ -184,24 +441,67 @@
         <button id="refuse-cookies">Refuser</button>
     </div>
     <script>
-        function setCookieConsent(value) {
-            localStorage.setItem('cookieConsent', value);
-        }
-        function getCookieConsent() {
-            return localStorage.getItem('cookieConsent');
-        }
+        // Loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader-bg').style.opacity = 0;
+                setTimeout(function() {
+                    document.getElementById('loader-bg').style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // Animation slide-in alternée des blocs
         document.addEventListener('DOMContentLoaded', function() {
-            if (!getCookieConsent()) {
+            document.querySelectorAll('.bloc').forEach(function(bloc, i) {
+                setTimeout(function() {
+                    bloc.classList.add(i % 2 === 0 ? 'slide-in-left' : 'slide-in-right');
+                }, 200 + i*250);
+            });
+
+            // Bannière cookies
+            if (!localStorage.getItem('cookieConsent')) {
                 document.getElementById('cookie-banner').style.display = 'block';
             }
             document.getElementById('accept-cookies').onclick = function() {
-                setCookieConsent('accepted');
+                localStorage.setItem('cookieConsent', 'accepted');
                 document.getElementById('cookie-banner').style.display = 'none';
             };
             document.getElementById('refuse-cookies').onclick = function() {
-                setCookieConsent('refused');
+                localStorage.setItem('cookieConsent', 'refused');
                 document.getElementById('cookie-banner').style.display = 'none';
             };
+
+            // Afficher plus
+            document.getElementById('show-more-btn').addEventListener('click', function() {
+                var plusSection = document.getElementById('plus-section');
+                plusSection.classList.add('visible');
+                this.style.display = 'none';
+                // Animation slide-in des nouveaux blocs
+                plusSection.querySelectorAll('.bloc').forEach(function(bloc, i) {
+                    setTimeout(function() {
+                        bloc.classList.add(i % 2 === 0 ? 'slide-in-left' : 'slide-in-right');
+                    }, 200 + i*250);
+                });
+            });
+
+            // Inversion des couleurs de l'image header au clic
+            document.getElementById('header-img').addEventListener('click', function() {
+                this.classList.toggle('invert');
+            });
+
+            // Parallax sur l'image de présentation au scroll
+            var parallaxImg = document.getElementById('parallax-img');
+            window.addEventListener('scroll', function() {
+                var scrolled = window.scrollY;
+                if(parallaxImg){
+                    parallaxImg.style.transform = 'translateY(' + (scrolled * 0.12) + 'px) scale(1.07)';
+                }
+            });
+            // Inversion des couleurs de l'image de présentation au clic
+            parallaxImg.addEventListener('click', function() {
+                this.classList.toggle('invert');
+            });
         });
     </script>
 </body>
