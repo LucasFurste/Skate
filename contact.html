@@ -3,58 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Web FURSTENBERGER Lucas - Contact</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Lien vers le fichier CSS -->
+    <title>Contact - Planches de Surf et Accessoires à l'ESNL | FURSTENBERGER Lucas</title>
+    <meta name="description" content="Contactez FURSTENBERGER Lucas à l'ESNL pour toute demande sur la vente de planches de surf, accessoires et combinaisons. Réponse rapide pour débutants et surfeurs expérimentés.">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Styles pour le menu */
         nav.menu {
-            display: flex; /* Déclare la zone du menu en flex */
-            justify-content: space-around; /* Espace entre les items */
+            display: flex;
+            justify-content: space-around;
         }
         nav.menu ul {
-            display: flex; /* Utilisation de flexbox pour les éléments de la liste */
-            padding: 0; /* Supprime le padding par défaut de la liste */
-            margin: 0; /* Supprime la marge par défaut de la liste */
-            list-style-type: none; /* Supprime les puces de la liste */
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
         }
         nav.menu li {
-            flex: 1; /* Chaque item occupe un tiers de l'espace disponible */
-            margin: 10px; /* Espace autour des items */
+            flex: 1;
+            margin: 10px;
         }
         nav.menu a {
-            display: block; /* Permet de rendre le lien cliquable sur toute la zone de l'élément */
-            text-align: center; /* Centre le texte dans le lien */
-            text-decoration: none; /* Enlève la décoration des liens */
-            background-color: #4CAF50; /* Couleur de fond au choix */
-            color: white; /* Couleur du texte */
-            padding: 12px 20px; /* Marge intérieure : gauche/droite plus grande que haut/bas */
-            border-radius: 8px; /* Coins arrondis pour le lien */
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
         }
-        /* Style pour aligner l'image à droite */
+        nav.menu a:hover {
+            background-color: #388e3c;
+            transition: background 0.3s;
+        }
         .header-image {
-            float: right; /* Permet d'aligner l'image à droite */
-            margin-left: 20px; /* Ajoute de l'espace à gauche de l'image */
+            float: right;
+            margin-left: 20px;
+            max-width: 100%;
+            height: auto;
         }
-        /* Styles pour le pied de page */
         footer {
-            display: flex; /* Utilise flexbox pour le pied de page */
-            justify-content: space-between; /* Espace entre les éléments */
-            align-items: center; /* Centre verticalement les éléments */
-            padding: 10px; /* Ajoute de l'espacement autour du pied de page */
-            position: relative; /* Nécessaire pour le positionnement absolu des éléments */
-            bottom: 0; /* Aligne le pied de page en bas de la page */
-            width: 100%; /* Prend toute la largeur de la page */
-            background-color: #f9f9f9; /* Optionnel : couleur de fond du pied de page */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+            background-color: #f9f9f9;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, button {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #388e3c;
         }
     </style>
 </head>
 <body>
-
-    <!-- En-tête avec menu de navigation -->
     <header>
-        <h1>Contactez-nous</h1>
-        <img src="OLAIAN COMBINAISON DE SURF SWS900CW 4 3 H H DCT PE22.jpg" alt="Illustration de planches et accessoires" width="150" height="100" class="header-image"> <!-- Ajout de l'image ici -->
-        <nav class="menu"> <!-- Ajout de la classe "menu" -->
+        <h1>Contactez FURSTENBERGER Lucas à l'ESNL</h1>
+        <img src="sk8.jpg" alt="Contactez l'ESNL pour planches de surf et accessoires" width="150" height="100" class="header-image">
+        <nav class="menu">
             <ul>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="plan-acces.html">Plan d'accès</a></li>
@@ -62,29 +102,29 @@
             </ul>
         </nav>
     </header>
+    <main>
+        <section>
+            <h2>Envoyez-nous un message</h2>
+            <p>
+                Pour toute question sur nos planches de surf, accessoires ou combinaisons à l'ESNL, remplissez le formulaire ci-dessous. Nous répondrons rapidement à toutes vos demandes, que vous soyez débutant ou surfeur expérimenté.
+            </p>
+            <form action="traitement-formulaire.php" method="post">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
 
-    <!-- Formulaire de contact -->
-    <section>
-        <h2>Envoyez-nous un message</h2>
-        <form action="traitement-formulaire.php" method="post">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required><br><br>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
 
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required><br><br>
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
 
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" rows="4" required></textarea><br><br>
-
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
-
-    <!-- Pied de page -->
+                <button type="submit">Envoyer</button>
+            </form>
+        </section>
+    </main>
     <footer>
-        <p style="margin: 0;"><a href="mentions_legales.html">Mentions légales</a></p> <!-- Aligné à gauche -->
-        <p style="margin: 0;">&copy; 2024 FURSTENBERGER Lucas. Tous droits réservés.</p> <!-- Aligné à droite -->
+        <p style="margin: 0;"><a href="mentions_legales.html">Mentions légales</a></p>
+        <p style="margin: 0;">&copy; 2024 FURSTENBERGER Lucas. Tous droits réservés.</p>
     </footer>
-
 </body>
 </html>
