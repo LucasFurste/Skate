@@ -443,4 +443,220 @@
         });
     </script>
 </body>
+<!-- Ajoutez cette section dans votre main, après vos sections existantes -->
+<section id="testimonials-section">
+    <h2 class="centered-text">Témoignages de nos clients</h2>
+    <p class="centered-text">Découvrez ce que pensent nos clients de nos planches de surf et accessoires.</p>
+    <div id="testimonials-container" class="testimonials-grid"></div>
+</section>
+
+<style>
+/* Ajoutez ce CSS à votre section <style> existante */
+#testimonials-section {
+    margin: 50px 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.testimonial-card {
+    background: #fff;
+    border: 1.5px solid var(--primary);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(34,58,94,0.07);
+    transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+}
+
+.testimonial-card:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0 12px 32px rgba(34,58,94,0.15);
+}
+
+.testimonial-card:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+.testimonial-card:nth-child(3n) {
+    animation-delay: 0.4s;
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 12px;
+}
+
+.testimonial-info h4 {
+    margin: 0;
+    color: var(--primary);
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.1rem;
+}
+
+.testimonial-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 2px 0 0 0;
+}
+
+.testimonial-rating {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.star {
+    color: #ffd700;
+    font-size: 1.2rem;
+    margin-right: 2px;
+}
+
+.star.empty {
+    color: #ddd;
+}
+
+.testimonial-comment {
+    color: var(--text);
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+}
+</style>
+
+<script>
+// Ajoutez ce JavaScript à la fin de votre fichier, avant la fermeture du </body>
+
+// Données des témoignages
+const testimonialsData = [
+    {
+        name: "Marine Dubois",
+        date: "15 décembre 2024",
+        rating: 5,
+        comment: "Excellente qualité ! J'ai acheté ma première planche ici et le conseil était parfait. Je recommande vivement pour tous les surfeurs débutants."
+    },
+    {
+        name: "Thomas Martin",
+        date: "8 décembre 2024",
+        rating: 5,
+        comment: "Super service et planches de qualité exceptionnelle. L'équipe connaît vraiment son métier. Ma longboard me donne entière satisfaction !"
+    },
+    {
+        name: "Sophie Laurent",
+        date: "2 décembre 2024",
+        rating: 4,
+        comment: "Très bon accueil, large choix de combinaisons. Les prix sont corrects et la qualité au rendez-vous. Je reviendrai pour mes prochains achats."
+    },
+    {
+        name: "Alexandre Rousseau",
+        date: "28 novembre 2024",
+        rating: 5,
+        comment: "Parfait pour l'équipement complet ! J'ai trouvé tout ce dont j'avais besoin : planche, combinaison, accessoires. Service client au top."
+    },
+    {
+        name: "Camille Moreau",
+        date: "22 novembre 2024",
+        rating: 4,
+        comment: "Bons conseils techniques et matériel adapté à mon niveau. L'équipe a su m'orienter vers la planche parfaite pour progresser."
+    },
+    {
+        name: "Julien Leroy",
+        date: "18 novembre 2024",
+        rating: 5,
+        comment: "Qualité/prix imbattable ! Ma shortboard tient parfaitement depuis 6 mois d'utilisation intensive. Livraison rapide en plus."
+    }
+];
+
+// Fonction pour créer les étoiles
+function createStars(rating) {
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+            starsHTML += '<span class="star">★</span>';
+        } else {
+            starsHTML += '<span class="star empty">★</span>';
+        }
+    }
+    return starsHTML;
+}
+
+// Fonction pour obtenir les initiales
+function getInitials(name) {
+    return name.split(' ').map(word => word[0]).join('').toUpperCase();
+}
+
+// Fonction pour afficher les témoignages
+function displayTestimonials() {
+    const container = document.getElementById('testimonials-container');
+    let testimonialsHTML = '';
+    
+    testimonialsData.forEach(testimonial => {
+        testimonialsHTML += `
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        ${getInitials(testimonial.name)}
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>${testimonial.name}</h4>
+                        <p class="testimonial-date">${testimonial.date}</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    ${createStars(testimonial.rating)}
+                </div>
+                <p class="testimonial-comment">"${testimonial.comment}"</p>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = testimonialsHTML;
+}
+
+// Charger les témoignages quand le DOM est prêt
+document.addEventListener('DOMContentLoaded', function() {
+    // Attendre que le loader disparaisse avant d'afficher les témoignages
+    setTimeout(() => {
+        displayTestimonials();
+    }, 1000);
+});
+</script>
 </html>
